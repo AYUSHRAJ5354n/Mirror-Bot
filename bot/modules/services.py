@@ -5,22 +5,25 @@ from ..helper.telegram_helper.button_build import ButtonMaker
 from ..helper.telegram_helper.message_utils import send_message, edit_message, send_file
 from ..helper.telegram_helper.filters import CustomFilters
 from ..helper.telegram_helper.bot_commands import BotCommands
+from ..helper.telegram_helper.media_utils import send_photo  # New import for sending images
 
 
 @new_task
 async def start(_, message):
     buttons = ButtonMaker()
     buttons.url_button(
-        "Repo", "https://www.github.com/anasty17/mirror-leech-telegram-bot"
+        "Base Repo", "https://www.github.com/anasty17/mirror-leech-telegram-bot"
     )
-    buttons.url_button("Code Owner", "https://t.me/anas_tayyar")
+    buttons.url_button("Leech Group", "https://t.me/Public_Mirror_Leech_Group")
     reply_markup = buttons.build_menu(2)
+    
+    # Send image along with the message
+    image_url = "https://envs.sh/v_K.jpg"
     if await CustomFilters.authorized(_, message):
         start_string = f"""
-This bot can mirror from links|tgfiles|torrents|nzb|rclone-cloud to any rclone cloud, Google Drive or to telegram.
-Type /{BotCommands.HelpCommand} to get a list of available commands
+Listen up, pal. This bot's got the power to mirror from links, tgfiles, torrents, nzb, and even rclone-cloud—straight to any rclone cloud, Google Drive, or even Telegram. Want to know more? Type /help and see the commands at your disposal.
 """
-        await send_message(message, start_string, reply_markup)
+        await send_photo(message, image_url, caption=start_string, reply_markup=reply_markup)
     else:
         await send_message(
             message,
