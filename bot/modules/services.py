@@ -5,8 +5,6 @@ from ..helper.telegram_helper.button_build import ButtonMaker
 from ..helper.telegram_helper.message_utils import send_message, edit_message, send_file
 from ..helper.telegram_helper.filters import CustomFilters
 from ..helper.telegram_helper.bot_commands import BotCommands
-from ..helper.telegram_helper.media_utils import send_photo  # New import for sending images
-
 
 @new_task
 async def start(_, message):
